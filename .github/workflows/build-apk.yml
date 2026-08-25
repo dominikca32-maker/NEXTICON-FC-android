@@ -1,0 +1,69 @@
+name: Build Android APK
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Accept licenses
+        run: yes | sdkmanager --licenses || true
+
+      - name: Verify bundled game
+        run: |
+          if [ ! -f app/src/main/assets/index.html ]; then
+            echo "::error::app/src/main/assets/index.html missing — sync NEXTICON-FC dist/ into assets before building."
+            exit 1
+          fi
+
+      - name: Build debug APK
+        run: |
+          chmod +x gradlew
+          ./gradlew assembleDebug --no-daemon
+
+      - name: Stage release APK
+        run: |
+          cp app/build/outputs/apk/debug/app-debug.apk NEXTICON-FC-android.apk
+          ls -lh NEXTICON-FC-android.apk
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: NEXTICON-FC-android
+          path: NEXTICON-FC-android.apk
+          if-no-files-found: error
+
+      - name: Create GitHub Release
+        if: github.ref == 'refs/heads/main'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: android-${{ github.run_number }}
+          name: Android APK #${{ github.run_number }}
+          body: |
+            **NEXTICON FC** for Android (WebView shell, debug-signed for sideloading).
+
+            1. Download `NEXTICON-FC-android.apk`
+            2. Install on your device (unknown sources / adb)
+            3. FlagCDN flags and fonts need network; Event heroes and UI are local.
+
+            To rebuild with a newer game: sync `NEXTICON-FC/dist/` into `app/src/main/assets/` and push.
+          files: NEXTICON-FC-android.apk
+          generate_release_notes: false

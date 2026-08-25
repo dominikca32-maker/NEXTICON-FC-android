@@ -1,0 +1,23 @@
+# Gradle
+.gradle/
+build/
+**/build/
+local.properties
+
+# Android Studio
+.idea/
+*.iml
+.DS_Store
+captures/
+.externalNativeBuild/
+.cxx/
+
+# Keystores (use your own for release signing)
+*.jks
+*.keystore
+
+# Synced game build — keep repo small; CI expects assets committed or synced in workflow
+# Uncomment if you never commit dist into assets:
+# app/src/main/assets/index.html
+# app/src/main/assets/assets/
+# app/src/main/assets/event-heroes/
