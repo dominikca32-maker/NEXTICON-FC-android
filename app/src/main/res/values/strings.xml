@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">NEXTICON FC</string>
+    <string name="status_missing_game">Game files missing.\n\nCopy the NEXTICON FC production build (contents of dist/) into app/src/main/assets/ before building the APK.\n\nSee README in this repo for sync scripts.</string>
+</resources>
