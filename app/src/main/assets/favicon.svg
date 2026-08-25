@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="NextIcon FC">
+  <style>
+    .dark { display: inline; }
+    .light { display: none; }
+    @media (prefers-color-scheme: light) {
+      .dark { display: none; }
+      .light { display: inline; }
+    }
+  </style>
+
+  <g class="dark">
+    <rect width="64" height="64" rx="14" fill="#0a0a0b"/>
+    <path d="M14 52 V24 L21 14 H43 L50 24 V52" fill="none" stroke="#1fa86a" stroke-width="7" stroke-linejoin="miter"/>
+    <path d="M20 48 V16 H27 L37 34 V16 H44 V48 H37 L27 30 V48 Z" fill="#ffffff"/>
+    <path d="M32 6.2 33.4 10.4 37.9 10.7 34.4 13.5 35.4 17.9 32 15.6 28.6 17.9 29.6 13.5 26.1 10.7 30.6 10.4 Z" fill="#f0c243"/>
+  </g>
+  <g class="light">
+    <rect width="64" height="64" rx="14" fill="#ffffff"/>
+    <path d="M14 52 V24 L21 14 H43 L50 24 V52" fill="none" stroke="#166534" stroke-width="7" stroke-linejoin="miter"/>
+    <path d="M20 48 V16 H27 L37 34 V16 H44 V48 H37 L27 30 V48 Z" fill="#0a0a0b"/>
+    <path d="M32 6.2 33.4 10.4 37.9 10.7 34.4 13.5 35.4 17.9 32 15.6 28.6 17.9 29.6 13.5 26.1 10.7 30.6 10.4 Z" fill="#d4a017"/>
+  </g>
+</svg>
