@@ -2,21 +2,18 @@
 set -euo pipefail
 
 GAME_DIST="${1:-}"
-ASSETS_DIR="$(cd "$(dirname "$0")/.." && pwd)/app/src/main/assets"
+ASSETS_DIR="$(cd "$(dirname "$0")/../app/src/main/assets" && pwd)"
 
-if [[ -n "$GAME_DIST" && -f "$GAME_DIST/index.html" ]]; then
-  echo "Syncing game from $GAME_DIST → $ASSETS_DIR"
-  find "$ASSETS_DIR" -mindepth 1 ! -name 'README.txt' -exec rm -rf {} + 2>/dev/null || true
-  cp -R "$GAME_DIST"/. "$ASSETS_DIR/"
-  echo "Done. assets/index.html present: $(test -f "$ASSETS_DIR/index.html" && echo yes || echo no)"
-  exit 0
+if [[ -z "$GAME_DIST" ]]; then
+  echo "Usage: $0 <path-to-game-dist>" >&2
+  exit 1
 fi
 
-if [[ -f "$ASSETS_DIR/index.html" ]]; then
-  echo "assets/index.html already present — nothing to do."
-  exit 0
+if [[ ! -d "$GAME_DIST" ]]; then
+  echo "Game dist not found: $GAME_DIST" >&2
+  exit 1
 fi
 
-echo "Usage: $0 /path/to/NEXTICON-FC/dist" >&2
-echo "Or build NEXTICON-FC first: pnpm build" >&2
-exit 1
+rm -rf "${ASSETS_DIR:?}/"*
+cp -a "$GAME_DIST"/. "$ASSETS_DIR"/
+echo "Synced $GAME_DIST -> $ASSETS_DIR"
