@@ -12,8 +12,36 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout Android shell
         uses: actions/checkout@v4
+
+      - name: Sync game assets
+        env:
+          GAME_REPO_TOKEN: ${{ secrets.GAME_REPO_TOKEN }}
+        run: |
+          set -euo pipefail
+          chmod +x scripts/sync-wwwroot.sh
+
+          if [ -f app/src/main/assets/assets/index-Bib2eBWV.js ]; then
+            echo "Bundled game assets already present."
+            exit 0
+          fi
+
+          if [ -z "${GAME_REPO_TOKEN:-}" ]; then
+            echo "::error::Game bundle missing (index-Bib2eBWV.js). Add repo secret GAME_REPO_TOKEN (PAT with read access to NEXTICON-FC) or sync dist/ into app/src/main/assets/ and push."
+            exit 1
+          fi
+
+          git clone --depth 1 --branch staging \
+            "https://x-access-token:${GAME_REPO_TOKEN}@github.com/dominikca32-maker/NEXTICON-FC.git" \
+            game
+
+          corepack enable
+          cd game
+          pnpm install --frozen-lockfile
+          pnpm build
+          cd ..
+          ./scripts/sync-wwwroot.sh game/dist
 
       - name: Setup Java
         uses: actions/setup-java@v4
@@ -27,12 +55,17 @@ jobs:
       - name: Accept licenses
         run: yes | sdkmanager --licenses || true
 
+      - name: Ensure Gradle wrapper jar
+        run: |
+          if [ ! -s gradle/wrapper/gradle-wrapper.jar ]; then
+            curl -fsSL -o gradle/wrapper/gradle-wrapper.jar \
+              https://raw.githubusercontent.com/gradle/gradle/v8.11.1/gradle/wrapper/gradle-wrapper.jar
+          fi
+
       - name: Verify bundled game
         run: |
-          if [ ! -f app/src/main/assets/index.html ]; then
-            echo "::error::app/src/main/assets/index.html missing — sync NEXTICON-FC dist/ into assets before building."
-            exit 1
-          fi
+          test -f app/src/main/assets/index.html
+          test -f app/src/main/assets/assets/index-Bib2eBWV.js
 
       - name: Build debug APK
         run: |
@@ -64,6 +97,6 @@ jobs:
             2. Install on your device (unknown sources / adb)
             3. FlagCDN flags and fonts need network; Event heroes and UI are local.
 
-            To rebuild with a newer game: sync `NEXTICON-FC/dist/` into `app/src/main/assets/` and push.
+            CI builds the game from `NEXTICON-FC` staging when `GAME_REPO_TOKEN` is set, or uses committed assets under `app/src/main/assets/`.
           files: NEXTICON-FC-android.apk
           generate_release_notes: false
