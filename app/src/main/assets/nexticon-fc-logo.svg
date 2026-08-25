@@ -1,1 +1,36 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none"><rect width="512" height="512" rx="96" fill="#08090b"/><path d="M128 160h96l48 128 48-128h96v192h-64V256l-48 128h-64l-48-128v96h-64V160z" fill="#2dd4bf"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="NextIcon FC">
+  <style>
+    .dark { display: inline; }
+    .light { display: none; }
+    @media (prefers-color-scheme: light) {
+      .dark { display: none; }
+      .light { display: inline; }
+    }
+  </style>
+
+  <g class="dark">
+    <rect width="512" height="512" rx="112" fill="#0a0a0b"/>
+    <path d="M0 318 H512 V400 A112 112 0 0 1 400 512 H112 A112 112 0 0 1 0 400 Z" fill="#14532d"/>
+    <line x1="56" y1="318" x2="456" y2="318" stroke="#ffffff33" stroke-width="6"/>
+    <circle cx="256" cy="318" r="72" fill="none" stroke="#ffffff33" stroke-width="6"/>
+    <path d="M96 512 L160 360 H352 L416 512" fill="none" stroke="#ffffff22" stroke-width="5"/>
+    <path d="M118 268 V148 L158 92 H354 L394 148 V268" fill="none" stroke="#1fa86a" stroke-width="36" stroke-linejoin="miter"/>
+    <path d="M168 272 V108 H214 L298 198 V108 H344 V272 H298 L214 182 V272 Z" fill="#ffffff"/>
+    <path d="M256 48 L268 84 H308 L276 108 L288 148 L256 126 L224 148 L236 108 L204 84 H244 Z" fill="#f0c243"/>
+    <text x="256" y="348" text-anchor="middle" font-family="Outfit, Barlow Condensed, Arial Black, sans-serif" font-weight="900" font-size="42" letter-spacing="6" fill="#ffffff">NEXTICON</text>
+    <line x1="168" y1="368" x2="344" y2="368" stroke="#f0c243" stroke-width="4" stroke-linecap="round"/>
+  </g>
+
+  <g class="light">
+    <rect width="512" height="512" rx="112" fill="#ffffff"/>
+    <path d="M0 318 H512 V400 A112 112 0 0 1 400 512 H112 A112 112 0 0 1 0 400 Z" fill="#dcfce7"/>
+    <line x1="56" y1="318" x2="456" y2="318" stroke="#16653433" stroke-width="6"/>
+    <circle cx="256" cy="318" r="72" fill="none" stroke="#16653433" stroke-width="6"/>
+    <path d="M96 512 L160 360 H352 L416 512" fill="none" stroke="#16653422" stroke-width="5"/>
+    <path d="M118 268 V148 L158 92 H354 L394 148 V268" fill="none" stroke="#166534" stroke-width="36" stroke-linejoin="miter"/>
+    <path d="M168 272 V108 H214 L298 198 V108 H344 V272 H298 L214 182 V272 Z" fill="#0a0a0b"/>
+    <path d="M256 48 L268 84 H308 L276 108 L288 148 L256 126 L224 148 L236 108 L204 84 H244 Z" fill="#d4a017"/>
+    <text x="256" y="348" text-anchor="middle" font-family="Outfit, Barlow Condensed, Arial Black, sans-serif" font-weight="900" font-size="42" letter-spacing="6" fill="#0a0a0b">NEXTICON</text>
+    <line x1="168" y1="368" x2="344" y2="368" stroke="#d4a017" stroke-width="4" stroke-linecap="round"/>
+  </g>
+</svg>
