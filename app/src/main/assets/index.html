@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>NextIcon FC</title>
+    <meta
+      name="description"
+      content="NextIcon FC ist ein lokaler Fußball-Karrieresimulator mit Transfers, Wettbewerben, Nationalmannschaft und Karriereentscheidungen."
+    />
+    <meta name="theme-color" content="#08090b" />
+    <script>
+      (function () {
+        try {
+          var key = "themeId_v1";
+          var stored = localStorage.getItem(key) || "midnight";
+          var presets = {
+            midnight: { mode: "dark", color: "#08090b", vars: { "--app-bg-outer": "#080c14", "--app-bg": "#08090b", "--app-accent": "#2dd4bf" } },
+            pitch: { mode: "dark", color: "#071510", vars: { "--app-bg-outer": "#041008", "--app-bg": "#071510", "--app-accent": "#22c55e" } },
+            arena: { mode: "dark", color: "#070b14", vars: { "--app-bg-outer": "#050810", "--app-bg": "#070b14", "--app-accent": "#38bdf8" } },
+            daylight: { mode: "light", color: "#ececef", vars: { "--app-bg-outer": "#e4e5ea", "--app-bg": "#ececef", "--app-accent": "#117a71" } },
+            chalk: { mode: "light", color: "#f0ebe4", vars: { "--app-bg-outer": "#e8e2d9", "--app-bg": "#f0ebe4", "--app-accent": "#b45309" } },
+            paper: { mode: "light", color: "#f0eef3", vars: { "--app-bg-outer": "#e6e4eb", "--app-bg": "#f0eef3", "--app-accent": "#6d28d9" } }
+          };
+          var preset = presets[stored] || presets.midnight;
+          var root = document.documentElement;
+          root.dataset.theme = stored in presets ? stored : "midnight";
+          root.dataset.themeMode = preset.mode;
+          Object.keys(preset.vars).forEach(function (name) {
+            root.style.setProperty(name, preset.vars[name]);
+          });
+          var meta = document.querySelector('meta[name="theme-color"]');
+          if (meta) meta.setAttribute("content", preset.color);
+        } catch (e) {}
+      })();
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=Outfit:wght@400;600;900&family=Roboto:ital,wght@0,400;0,500;0,700;0,900;1,400;1,500&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Icons / PWA — tab icon follows the browser color scheme -->
+    <link rel="icon" type="image/png" href="/favicon-light.png" media="(prefers-color-scheme: light)" />
+    <link rel="icon" type="image/png" href="/favicon-dark.png" media="(prefers-color-scheme: dark)" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/icon-512-light.png" media="(prefers-color-scheme: light)" />
+    <link rel="apple-touch-icon" href="/icon-512-dark.png" media="(prefers-color-scheme: dark)" />
+    <link rel="apple-touch-icon" href="/icon-512-dark.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="NextIcon FC" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="NextIcon FC" />
+    <meta property="og:title" content="NextIcon FC" />
+    <meta
+      property="og:description"
+      content="Build your football career through transfers, competitions and career-defining decisions."
+    />
+    <meta property="og:locale" content="de_DE" />
+    <script type="module" crossorigin src="/assets/index-Bib2eBWV.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-D07J2I8U.css">
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
