@@ -44,14 +44,6 @@ PowerShell: `.\scripts\sync-wwwroot.ps1 -GameDist ..\NEXTICON-FC\dist`
 
 CI rebuilds the APK and publishes a new Release.
 
-### CI secret (recommended)
-
-The game repo is private. For GitHub Actions to build a complete APK without committing every `dist/` file, add a repository secret:
-
-- **`GAME_REPO_TOKEN`** — GitHub PAT with `repo` read access to `NEXTICON-FC`
-
-CI clones `staging`, runs `pnpm build`, syncs into `app/src/main/assets/`, then builds the APK.
-
 ## Local build
 
 Requirements: JDK 17+, Android SDK (or Android Studio).
