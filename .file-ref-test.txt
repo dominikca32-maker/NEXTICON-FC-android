@@ -1,0 +1,1 @@
+@/tmp/_stdio_test_push.json
