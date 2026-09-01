@@ -17,7 +17,7 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:padding="24dp"
-        android:text="@string/status_missing_game"
+        android:text="@string/status_loading"
         android:textAlignment="center"
         android:textColor="@color/app_text"
         android:textSize="16sp"
